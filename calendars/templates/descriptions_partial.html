@@ -1,0 +1,4 @@
+{% for description in descriptions %}
+    <input type="checkbox" name="events_to_delete" value="{{ description.id }}">
+    <label>{{ description.description }}</label><br>
+{% endfor %}

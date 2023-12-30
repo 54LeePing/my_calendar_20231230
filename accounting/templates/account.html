@@ -1,0 +1,69 @@
+{% load static %}
+    <title>Account Data</title>
+    {% block content %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/accountForm.css' %}?v={{ timestamp }}">
+    <link rel="stylesheet" href="{% static 'css/accountdark.css' %}?v={{ timestamp }}" id="darkTheme" disabled>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <div class="allPartBorder">
+        <a href="{% url 'calendars' %}">
+            <div class="Button">
+                <span>回到我的日曆</span>
+                <svg viewBox="0 0 13 10" height="10px" width="15px">
+                    <path d="M1,5 L11,5"></path>
+                    <polyline points="8 1 12 5 8 9"></polyline>
+                </svg>
+            </div>
+        </a>
+    <h1>新增紀錄</h1>
+    <form method="post" action="/save_account/" >
+        {% csrf_token %}
+        <label for="type">Type:</label>
+        <select id="type" name="type" class="type">
+            <option value="飲食">飲食</option>
+            <option value="交通">交通</option>
+            <option value="娛樂">娛樂</option>
+            <option value="房屋">房屋</option>
+            <option value="其他">其他</option>
+            <!-- 添加其他選項 -->
+        </select><br><br>
+    
+        <label for="date">日期:</label>
+        <input type="date" id="date" name="date"><br><br>
+        <label for="amount">金額:</label>
+        <input type="number" id="amount" name="amount"><br><br>
+    
+        <input type="submit" value="新增紀錄">
+    </form>
+    <hr>
+
+    <h2>紀錄</h2>
+    <form method="post" action="/show_account_by_year_and_month/">
+        {% csrf_token %}
+        <label for="year_month">年月:</label>
+        <input type="month" id="year_month" name="year_month"><br><br>
+        <input type="submit" value="查詢">
+        
+    </form>
+    <hr>
+    
+    <h1>細項</h1>
+    <ul>
+        {% for account in filtered_accounts %}
+            <div >
+                <li>Type: {{ account.type }}</li>
+            <li>Date: {{ account.date }}</li>
+            <li>Amount: {{ account.amount }} 元</li>
+            <form method="post" action="{% url 'delete_account' account.id %}">
+                {% csrf_token %}
+                <input type="submit" value="Delete">
+            </form>
+            <hr>
+            </div>
+            
+        {% endfor %}
+    </ul>
+</div>
+    <script src="{% static 'js/account.js' %}"></script>
+
+{% endblock %}

@@ -1,0 +1,83 @@
+{% load static %}
+
+<title>Calendar Main Page</title>
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/calendarForm.css' %}?v={{ timestamp }}">
+<link rel="stylesheet" href="{% static 'css/dark-theme.css' %}?v={{ timestamp }}" id="darkTheme" disabled>
+<link rel="stylesheet" type="text/css" href="{% static 'css/marquee.css' %}?v={{ timestamp }}">
+
+<div class="allPartBorder">
+    <div class="topProject">
+        <h1 style="color: #234567;">行事曆
+            <div class="toggle-switch">
+            <label class="switch-label">
+                <input type="checkbox" class="checkbox" id="themeSwitch" checked="true">
+                <span class="slider"></span>
+            </label>
+            </div>
+        </h1>
+    </div>
+
+    <div class="dayName">
+        <table class="dayNameTable">
+            <th>星期日</th>
+            <th>星期一</th>
+            <th>星期二</th>
+            <th>星期三</th>
+            <th>星期四</th>
+            <th>星期五</th>
+            <th>星期六</th>
+        </table>
+    </div>
+
+    <div class="rightSideProject" id="mainCalendar"></div>
+
+    <div class="leftSideProject" style="height: 24%;">
+        <span>功能欄</span>
+        <input type="date" id="dateBox" name="dateBox">
+        <a href="{% url 'events' %}">
+            <div class="Button">
+                <span>前往記事</span>
+                <svg viewBox="0 0 13 10" height="10px" width="15px">
+                    <path d="M1,5 L11,5"></path>
+                    <polyline points="8 1 12 5 8 9"></polyline>
+                </svg>
+            </div>
+        </a>
+
+        <a href="{% url 'show_account_by_year_and_month' %}">
+            <div class="Button">
+                <span>前往記帳</span>
+                <svg viewBox="0 0 13 10" height="10px" width="15px">
+                    <path d="M1,5 L11,5"></path>
+                    <polyline points="8 1 12 5 8 9"></polyline>
+                </svg>
+            </div>
+        </a>
+    </div>
+
+    <div class="leftSideProject" style="height: 24%;">
+        <span>重要事項</span>
+        <div id="marquee-container">
+            <div id="marquee-content">
+                <ul>
+                    {% for x in mycalendars %}
+                        {% if x.is_important == True %}
+                            <li>{{ x.description }}</li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="leftSideProject" style="height: 31%; margin-bottom: 1%;">
+        <span>新增備註</span>
+    </div>
+</div>
+
+<script src="{% static 'js/marquee.js' %}"></script>
+<script src="{% static 'js/dark-theme.js' %}"></script>
+<script src="{% static 'js/calendarJs.js' %}"></script>
+{% endblock %}
