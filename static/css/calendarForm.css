@@ -23,6 +23,9 @@ html, body {
 h1 {
     text-align: left;
     font-size: 36px;
+    color: #234567;
+    float: left;
+    margin-left: 1%;
 }
 
 .leftSideProject {
@@ -156,6 +159,8 @@ h1 {
     --dark: #28292c;
     --link: rgb(27, 129, 112);
     --link-hover: rgb(24, 94, 82);
+    float: right;
+    margin: 1%;
 }
 
 .switch-label {

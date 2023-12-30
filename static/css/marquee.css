@@ -2,7 +2,7 @@
     overflow: hidden;
     border: none;
     width: 100%;
-    height: 80%;
+    height: 90%;
 }
 
 #marquee-content {
@@ -21,7 +21,7 @@
 
 @keyframes marquee {
     from {
-      transform: translateY(5%);
+      transform: translateY(10%);
     }
     to {
       transform: translateY(-100%);
