@@ -1,16 +1,16 @@
 #marquee-container {
-    overflow: hidden;
-    border: none;
-    width: 100%;
-    height: 90%;
+  overflow: hidden;
+  border: none;
+  width: 100%;
+  height: 90%;
 }
 
 #marquee-content {
-    display: flex;
-    flex-direction: column;
-    animation: marquee 5s linear infinite 0s; /* 初始值，將在腳本中動態計算 */
-    animation-timing-function: steps(1, end);
-    line-height: 0.95;
+  display: flex;
+  flex-direction: column;
+  animation: marquee 5s linear infinite 0s; /* 初始值，將在腳本中動態計算 */
+  animation-timing-function: steps(1, end);
+  line-height: 0.95;
 }
 
 #marquee-content li {
@@ -20,10 +20,10 @@
 }
 
 @keyframes marquee {
-    from {
-      transform: translateY(10%);
-    }
-    to {
-      transform: translateY(-100%);
-    }
+  from {
+    transform: translateY(5%);
+  }
+  to {
+    transform: translateY(-100%);
+  }
 }

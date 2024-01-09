@@ -58,21 +58,6 @@ def show_account_by_year_and_month(request):
     else:
         return render(request, 'account.html')
 
-def ChooseMoouth(request):
-    # 如果是 POST 請求，取得用戶選擇的月份
-    if request.method == 'POST':
-        selected_month = request.POST.get('month')
-        # 根據用戶選擇的月份篩選資料
-        filtered_accounts = Account.objects.filter(date__month=selected_month)
-    else:
-        # 如果是 GET 請求，顯示所有資料
-        filtered_accounts = Account.objects.all()
-
-    context = {
-        'filtered_accounts': filtered_accounts
-    }
-    return render(request, 'your_template.html', context)
-
 def delete_account(request, account_id):
     account = get_object_or_404(Account, pk=account_id)
     

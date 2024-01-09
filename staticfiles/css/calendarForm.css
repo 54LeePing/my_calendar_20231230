@@ -96,6 +96,13 @@ h1 {
 
 .calendarDay ul {
     margin: auto;
+    float: left;
+}
+
+.calendarDay li {
+    margin: auto;
+    display: flexbox;
+    text-align: left;
 }
 
 #dateBox {

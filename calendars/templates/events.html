@@ -44,12 +44,9 @@
                 <input type="date" name="date" id="dateBox" value="{{ date }}"><br>
                 {% for event in events %}
                 <div class="cntr">
-                    <input class="hidden-xs-up" id="cbx" type="checkbox"  name="events_to_delete" value="{{ event.id }}">
-                    <label class="cbx" for="cbx"></label>
-                    <label>{{ event.description }}</label><br>
-                  </div>
-                    <!-- <input type="checkbox"   style="width: 15px; height: 15px;"> -->
-                    
+                    <input class="cbx" id="cbx_{{ event.id }}" type="checkbox" name="events_to_delete" value="{{ event.id }}">
+                    <label for="cbx_{{ event.id }}">{{ event.description }}</label><br>
+                </div>
                 {% endfor %}
                 <input type="submit" value="確定">
             </form>

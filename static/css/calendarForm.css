@@ -42,7 +42,9 @@ h1 {
     
 }
 
-
+.leftSideProject li {
+    color: #234567;
+}
 
 .rightSideProject {
     border: solid 2px;
@@ -100,6 +102,7 @@ h1 {
 .calendarDay li {
     margin: auto;
     display: flexbox;
+    text-align: left;
 }
 
 #dateBox {
