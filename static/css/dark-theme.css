@@ -22,7 +22,6 @@ html, body {
 h1 {
     text-align: left;
     font-size: 36px;
-    color: aliceblue;
 }
 
 .leftSideProject {
@@ -38,6 +37,10 @@ h1 {
 .leftSideProject span {
     color: aliceblue;
     
+}
+
+.leftSideProject li {
+    color: aliceblue;
 }
 
 .rightSideProject {

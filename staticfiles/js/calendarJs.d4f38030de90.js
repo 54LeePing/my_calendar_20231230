@@ -14,19 +14,21 @@ function generateCalendar(date) {
     }
 
     while (dayCounter <= daysInMonth) {
-        calendarContent += `<div class="calendarDay">${dayCounter}<br><div class="calendarData">${calendarDataOutput(date.getFullYear(), month.getMonth(), dayCounter)}</div></div>`;
+        let description = addCalendarDescription(new Date(date), mycalendars);
+        calendarContent += `<div class="calendarDay">${dayCounter}<br>${description}</div>`;
         dayCounter++;
     }
 
     calendar.innerHTML = calendarContent;
 }
 
-function calendarDataOutput(year, month, day) {
-    for (let i = 0; i < mycalendrs; i++) {
-        if (date == year-month-day) {
-            return mycalendrs.description;
+function addCalendarDescription(date, mycalendars) {
+    for (let i = 0; i < mycalendars.length; i++) {
+        if (date.getTime() === new Date(mycalendars[i].date).getTime()) {
+            return mycalendars[i].description;
         }
     }
+    return ''; // 如果沒有匹配的行事曆事件，返回空字符串
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -38,9 +40,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 生成行事曆
     generateCalendar(today);
-
-    // 將mycalendarsData用於你的JavaScript邏輯
-    console.log(mycalendarsData);
 
     // 監聽日期框的變更事件
     document.getElementById('dateBox').addEventListener('change', function() {

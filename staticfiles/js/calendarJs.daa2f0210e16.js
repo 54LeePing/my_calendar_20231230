@@ -13,10 +13,19 @@ function generateCalendar(date) {
         calendarContent += '<div class="calendarDay"></div>';
     }
 
+    // 使用全局變數 jsonData
+    jsonData.mycalendars.forEach(function(event) {
+        let eventDate = new Date(event.date);
+        if (eventDate.getMonth() === date.getMonth() && eventDate.getFullYear() === date.getFullYear()) {
+            calendarContent += `<div class="calendarDay">${eventDate.getDate()} - ${event.someField}</div>`;
+        }
+    });
+
     while (dayCounter <= daysInMonth) {
         calendarContent += `<div class="calendarDay">${dayCounter}</div>`;
         dayCounter++;
     }
+    
 
     calendar.innerHTML = calendarContent;
 }
@@ -30,9 +39,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 生成行事曆
     generateCalendar(today);
-
-    // 將mycalendarsData用於你的JavaScript邏輯
-    console.log(mycalendarsData);
 
     // 監聽日期框的變更事件
     document.getElementById('dateBox').addEventListener('change', function() {

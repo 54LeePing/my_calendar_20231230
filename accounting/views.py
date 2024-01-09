@@ -6,6 +6,7 @@ from datetime import datetime
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
+from django.db.models import Sum
 
 
 def accounting(request):
@@ -35,14 +36,24 @@ def save_account(request):
 def show_account_by_year_and_month(request):
     if request.method == 'POST':
         selected_year_month = request.POST.get('year_month')
-        # 解析所選的年份和月份
         selected_date = datetime.strptime(selected_year_month, '%Y-%m')
         selected_year = selected_date.year
         selected_month = selected_date.month
         
-        # 根據選擇的年份和月份過濾帳目
+        # 过滤账目记录
         filtered_accounts = Account.objects.filter(date__year=selected_year, date__month=selected_month)
-        context = {'filtered_accounts': filtered_accounts}
+        
+        # 计算该年月份的总收入和总支出
+        total_income = filtered_accounts.filter(amount__gt=0).aggregate(Sum('amount'))['amount__sum'] or 0
+        total_expense = filtered_accounts.filter(amount__lt=0).aggregate(Sum('amount'))['amount__sum'] or 0
+        
+        context = {
+            'filtered_accounts': filtered_accounts,
+            'selected_year': selected_year,
+            'selected_month': selected_month,
+            'total_income': total_income,
+            'total_expense': total_expense,
+        }
         return render(request, 'account.html', context)
     else:
         return render(request, 'account.html')

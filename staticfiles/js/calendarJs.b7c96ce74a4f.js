@@ -14,18 +14,22 @@ function generateCalendar(date) {
     }
 
     while (dayCounter <= daysInMonth) {
-        let dayDescription = getDayDescription(date.getFullYear(), date.getMonth() + 1, dayCounter);
-        calendarContent += `<div class="calendarDay" data-description="${dayDescription}">${dayCounter}</div>`;
+        //let description = addCalendarDesciption(new Date(date), mycalendars);
+        calendarContent += `<div class="calendarDay">${dayCounter}</div>`;
         dayCounter++;
     }
 
-    calendar.innerHTML = calendarContent;
+    calendar.innerHTML = calendarContent;  // 將內容放入行事曆容器
 }
 
-function getDayDescription(year, month, day) {
-    // 根據日期從後端獲取相應的description值，這裡需要根據你的後端實現這個函數
-    // 返回相應日期的description，這裡先返回空字符串，實際應根據你的需求和後端設計
-    return '';
+function addCalendarDesciption(date, mycalendars) {
+    for (let i = 0; i < mycalendars.length; i++) {
+        // 使用 getTime() 將日期轉換為時間戳，以確保比較的一致性
+        if (date.getTime() === new Date(mycalendars[i].date).getTime()) {
+            return mycalendars[i].description;
+        }
+    }
+    return ''; // 如果沒有匹配的行事曆事件，返回空字符串
 }
 
 document.addEventListener('DOMContentLoaded', function() {

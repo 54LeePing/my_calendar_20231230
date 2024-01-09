@@ -14,33 +14,23 @@ function generateCalendar(date) {
     }
 
     while (dayCounter <= daysInMonth) {
-        let dayEvents = getDayEvents(date.getFullYear(), date.getMonth() + 1, dayCounter);
-        let eventsHtml = dayEvents.map(event => `<p>${event.description}</p>`).join('');
-        calendarContent += `<div class="calendarDay">${dayCounter}${eventsHtml}</div>`;
+        let description = addCalendarDesciption(new Date(date), mycalendars);
+        console.log(`Day: ${dayCounter}, Description: ${description}`);
+        calendarContent += `<div class="calendarDay">${dayCounter}</div>`;
         dayCounter++;
     }
-    
 
     calendar.innerHTML = calendarContent;
 }
 
-function getDayEvents(year, month, day) {
-    const apiUrl = `/api/events/${year}/${month}/${day}`;
-
-    return fetch(apiUrl)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            return data.events;
-        })
-        .catch(error => {
-            console.error('Error fetching events:', error);
-            return [];
-        });
+function addCalendarDesciption(date, mycalendars) {
+    for (let i = 0; i < mycalendars.length; i++) {
+        // 使用 getTime() 將日期轉換為時間戳，以確保比較的一致性
+        if (date.getTime() === new Date(mycalendars[i].date).getTime()) {
+            return mycalendars[i].description;
+        }
+    }
+    return ''; // 如果沒有匹配的行事曆事件，返回空字符串
 }
 
 document.addEventListener('DOMContentLoaded', function() {

@@ -14,13 +14,23 @@ function generateCalendar(date) {
     }
 
     while (dayCounter <= daysInMonth) {
-        calendarContent += `<div class="calendarDay">${dayCounter}</div>`;
-        calendarContent += `<div class="calendarData">${dayCounter}</div>`;
+        let description = addCalendarDesciption(new Date(date), mycalendars);
+        console.log(`Day: ${dayCounter}, Description: ${description}`);
+        calendarContent += `<div class="calendarDay">${dayCounter}<br>${description}</div>`;
         dayCounter++;
     }
-    
 
     calendar.innerHTML = calendarContent;
+}
+
+function addCalendarDesciption(date, mycalendars) {
+    for (let i = 0; i < mycalendars.length; i++) {
+        // 使用 getTime() 將日期轉換為時間戳，以確保比較的一致性
+        if (date.getTime() === new Date(mycalendars[i].date).getTime()) {
+            return mycalendars[i].description;
+        }
+    }
+    return ''; // 如果沒有匹配的行事曆事件，返回空字符串
 }
 
 document.addEventListener('DOMContentLoaded', function() {

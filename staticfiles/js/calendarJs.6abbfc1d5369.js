@@ -9,13 +9,15 @@ function generateCalendar(date) {
     let calendarContent = '';
     let dayCounter = 1;
 
+    var jsonData = {{ json_data, safe }};
+    let calendarDes = json.loads(jsonData);
+
     for (let i = 0; i < startingDay; i++) {
         calendarContent += '<div class="calendarDay"></div>';
     }
 
     while (dayCounter <= daysInMonth) {
         calendarContent += `<div class="calendarDay">${dayCounter}</div>`;
-        calendarContent += `<div class="calendarData">${dayCounter}</div>`
         dayCounter++;
     }
     

@@ -23,7 +23,6 @@ html, body {
 h1 {
     text-align: left;
     font-size: 36px;
-    color: #234567;
 }
 
 .leftSideProject {
@@ -38,6 +37,10 @@ h1 {
 .leftSideProject span {
     color: #234567;
     
+}
+
+.leftSideProject li {
+    color: #234567;
 }
 
 .rightSideProject {
@@ -209,9 +212,4 @@ h1 {
     background-color: var(--dark);
     -webkit-box-shadow: none;
     box-shadow: none;
-}
-
-#themeSwitch {
-    float: left;
-    align-self: center;
 }

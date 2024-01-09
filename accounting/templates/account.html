@@ -46,7 +46,14 @@
         
     </form>
     <hr>
-    
+    <h4>
+        {% if selected_year and selected_month %}
+            <h2>{{ selected_year }}年{{ selected_month }}月份統計</h2>
+            <p>總收入: {{ total_income }}元</p>
+            <p>總支出: {{ total_expense }}元</p>
+            <p>總和: {{ total_income|add:total_expense }}元</p>
+        {% endif %}
+    </h4>
     <h1>細項</h1>
     <ul>
         {% for account in filtered_accounts %}
@@ -63,6 +70,7 @@
             
         {% endfor %}
     </ul>
+    
 </div>
     <script src="{% static 'js/account.js' %}"></script>
 
