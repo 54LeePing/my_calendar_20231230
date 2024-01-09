@@ -21,7 +21,7 @@ function generateCalendar(date, eventsData = {}) {
 
         let dayContent = `<div class="calendarDay">${dayCounter}`;
         if (eventsForDay && eventsForDay.length > 0) {
-            dayContent += '<ul>';
+            dayContent += '<br><ul>';
             eventsForDay.forEach(event => {
                 dayContent += `<li>${event}</li>`;
             });

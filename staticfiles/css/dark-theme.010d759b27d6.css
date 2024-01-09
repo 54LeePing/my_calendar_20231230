@@ -1,5 +1,5 @@
 div {
-    background-color: #9bb7e8;
+    background-color: #111827;
     color: aliceblue;
     border-color: aliceblue;
 }
@@ -14,7 +14,6 @@ html, body {
     height: 100%;
     box-sizing: border-box; /* 這可以確保 border 的寬度也被包括在元素的寬度和高度內 */
 }
-
 .topProject {
     height: 10%;
     width: 100%;
@@ -23,9 +22,7 @@ html, body {
 h1 {
     text-align: left;
     font-size: 36px;
-    color: #234567;
-    float: left;
-    margin-left: 1%;
+    color: aliceblue;
 }
 
 .leftSideProject {
@@ -35,11 +32,16 @@ h1 {
     margin-top: 1%;
     text-align: center;
     font-weight: 900;
+    
 }
 
 .leftSideProject span {
-    color: #234567;
+    color: aliceblue;
     
+}
+
+.leftSideProject li {
+    color: aliceblue;
 }
 
 .rightSideProject {
@@ -72,7 +74,7 @@ h1 {
 }
 
 .dayNameTable th {
-    color: #234567;
+    color: aliceblue;
     width: 14.28%;
     height: auto;
     font-size: 14px;
@@ -87,7 +89,7 @@ h1 {
     box-sizing: border-box;
     border: 1px solid #ccc;
     text-align: center;
-    color: #234567;
+    color: aliceblue;
 }
 
 #dateBox {
@@ -122,7 +124,7 @@ h1 {
     font-size: 18px;
     font-weight: 700;
     letter-spacing: 0.05em;
-    color: #234567;
+    color: aliceblue;
 }
 
 .Button svg {
@@ -132,7 +134,7 @@ h1 {
     fill: none;
     stroke-linecap: round;
     stroke-linejoin: round;
-    stroke: #234567;
+    stroke: aliceblue;
     stroke-width: 2;
     transform: translateX(-5px);
     transition: all 0.3s ease;
@@ -159,8 +161,6 @@ h1 {
     --dark: #28292c;
     --link: rgb(27, 129, 112);
     --link-hover: rgb(24, 94, 82);
-    float: right;
-    margin: 1%;
 }
 
 .switch-label {

@@ -2,9 +2,9 @@ function generateCalendar(date, eventsData = {}) {
     let calendar = document.querySelector('#mainCalendar');
     calendar.innerHTML = '';
 
-    let firstDayOfMonth = new Date(date.getFullYear(), date.getMonth(), 1);
-    let daysInMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
-    let startingDay = firstDayOfMonth.getDay();
+    let firstDayOfMonth = new Date(Date.UTC(date.getFullYear(), date.getMonth(), 1));
+    let daysInMonth = new Date(Date.UTC(date.getFullYear(), date.getMonth() + 1, 0)).getUTCDate();
+    let startingDay = firstDayOfMonth.getUTCDay();
 
     let calendarContent = '';
     let dayCounter = 1;
@@ -14,14 +14,14 @@ function generateCalendar(date, eventsData = {}) {
     }
 
     while (dayCounter <= daysInMonth) {
-        let currentDate = new Date(date.getFullYear(), date.getMonth(), dayCounter);
+        let currentDate = new Date(Date.UTC(date.getFullYear(), date.getMonth(), dayCounter));
         let formattedDate = currentDate.toISOString().split('T')[0];
 
         let eventsForDay = eventsData[formattedDate];
 
         let dayContent = `<div class="calendarDay">${dayCounter}`;
         if (eventsForDay && eventsForDay.length > 0) {
-            dayContent += '<ul>';
+            dayContent += '<br><ul>';
             eventsForDay.forEach(event => {
                 dayContent += `<li>${event}</li>`;
             });
@@ -75,4 +75,3 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Error:', error);
         });
 });
-
