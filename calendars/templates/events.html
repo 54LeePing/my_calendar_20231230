@@ -10,6 +10,7 @@
 <div class="allPartBorder">
     <div class="description">
         <div class="addDescription">
+            <h2>新增事件</h2>
             <form method="post" action="{% url 'create_calendar' %}">
                 {% csrf_token %}
                 <label for="date">請選擇日期: </label>
@@ -38,6 +39,7 @@
         </div>
             
         <div class="deleteDescription">
+            <h2>刪除事件</h2>
             <form method="post" action="{% url 'delete_calendar' %}">
                 {% csrf_token %}
                 <label for="date">請選擇日期: </label>

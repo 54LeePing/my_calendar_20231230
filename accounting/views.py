@@ -18,7 +18,6 @@ def accounting(request):
     return HttpResponse(template.render(context, request))
 
 def save_account(request):
-    # 在這裡處理保存資料的邏輯，可能需要使用POST請求中的資料來創建Account物件
     if request.method == 'POST':
         # 獲取POST請求中的資料
         type = request.POST.get('type')
@@ -40,10 +39,10 @@ def show_account_by_year_and_month(request):
         selected_year = selected_date.year
         selected_month = selected_date.month
         
-        # 过滤账目记录
+        #過濾記帳紀錄
         filtered_accounts = Account.objects.filter(date__year=selected_year, date__month=selected_month)
         
-        # 计算该年月份的总收入和总支出
+        #計算總收入和總支出
         total_income = filtered_accounts.filter(amount__gt=0).aggregate(Sum('amount'))['amount__sum'] or 0
         total_expense = filtered_accounts.filter(amount__lt=0).aggregate(Sum('amount'))['amount__sum'] or 0
         
@@ -63,5 +62,5 @@ def delete_account(request, account_id):
     
     account.delete()
     
-    # 刪除後重定向到某個頁面
+    # 刪除後重定向到記帳頁面
     return HttpResponseRedirect(reverse('accounting'))
